@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蓝鲸体育 · 资料整理与信息索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f6;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2a3a;
+            line-height: 1.65;
+            padding: 2rem 1rem 3rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrapper {
+            max-width: 980px;
+            width: 100%;
+        }
+
+        /* —— hero 区 —— */
+        .hero {
+            text-align: center;
+            padding: 2.5rem 1.5rem 2rem;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+            border: 1px solid #e5e9ed;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #0d2942;
+        }
+
+        .hero .subhead {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #4a5b6e;
+            border-bottom: 1px solid #eef1f5;
+            padding-bottom: 1.5rem;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .summary {
+            margin-top: 1.4rem;
+            padding: 1rem 1.5rem;
+            background: #f7f9fb;
+            border-radius: 16px;
+            border: 1px solid #e2e8ee;
+            font-size: 1rem;
+            color: #1f2c3a;
+            text-align: left;
+        }
+
+        /* —— 卡片通用 —— */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            margin-bottom: 2.4rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e7ed;
+            border-radius: 18px;
+            padding: 1.6rem 1.8rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 550;
+            color: #0b253b;
+            margin-bottom: 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #eaf0f6;
+        }
+
+        .card p, .card li {
+            font-size: 0.98rem;
+            color: #2d3e52;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            position: relative;
+            padding-left: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0.1rem;
+            color: #2b7aa5;
+            font-weight: 600;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.8rem;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        .tag {
+            background: #edf2f8;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #1e4b67;
+            border: 1px solid #d7e0ea;
+        }
+
+        .inline-link {
+            color: #1d6b96;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #b8cdde;
+        }
+
+        .inline-link:hover {
+            border-bottom: 1px solid #1d6b96;
+        }
+
+        /* —— 使用建议 / 提示卡片 —— */
+        .note-card {
+            background: #f8fafc;
+            border-left: 4px solid #4d7fa5;
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0 0.6rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 550;
+            color: #0b2b40;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item p {
+            margin: 0;
+        }
+
+        /* —— footer —— */
+        .meta-footer {
+            margin-top: 2.5rem;
+            padding: 1.2rem 1.8rem;
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #dfe5ec;
+            font-size: 0.9rem;
+            color: #3c536b;
+            text-align: center;
+        }
+
+        .meta-footer a {
+            color: #1d6b96;
+            text-decoration: none;
+        }
+
+        .meta-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* —— 响应式 —— */
+        @media (min-width: 640px) {
+            body {
+                padding: 2.5rem 2rem 4rem;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            .card {
+                padding: 1.8rem 2.2rem;
+            }
+        }
+
+        @media (min-width: 860px) {
+            .two-col {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- hero 摘要区 -->
+    <div class="hero">
+        <h1>蓝鲸体育 · 信息整理索引</h1>
+        <div class="subhead">
+            围绕体育内容与资料结构，做一份可查阅、可参照的说明页
+        </div>
+        <div class="summary">
+            <strong>摘要</strong> · 本页从资料整理视角，对 <a href="https://ssl-lanjingsports.com" class="inline-link">蓝鲸体育</a> 所涉及的常见信息类型、使用场景和内容组织方式做简要梳理。不代替官方说明，仅作为结构化参考，帮助使用者更快找到自己需要的部分。
+        </div>
+    </div>
+
+    <!-- 卡片区：亮点 + 特点（两列在宽屏） -->
+    <div class="card-grid two-col">
+        <!-- 卡片A：信息亮点 -->
+        <div class="card">
+            <h2>内容亮点</h2>
+            <ul>
+                <li>赛事数据与素材索引相对集中，便于横向对比</li>
+                <li>部分栏目提供结构化摘要，减少重复检索成本</li>
+                <li>界面导航分区清晰，适合按类别浏览</li>
+                <li>资讯更新具有一定时序性，可追溯历史信息</li>
+            </ul>
+            <div class="tag-row">
+                <span class="tag">数据结构</span>
+                <span class="tag">分类浏览</span>
+                <span class="tag">时序整理</span>
+            </div>
+        </div>
+
+        <!-- 卡片B：典型功能特点 -->
+        <div class="card">
+            <h2>功能特点</h2>
+            <ul>
+                <li>多维度筛选与排序，适配不同查阅习惯</li>
+                <li>列表与详情页内容层次分明，信息密度适中</li>
+                <li>移动端适配良好，纵向浏览体验顺畅</li>
+                <li>搜索入口明确，支持关键词查找</li>
+            </ul>
+            <div class="tag-row">
+                <span class="tag">筛选排序</span>
+                <span class="tag">响应式</span>
+                <span class="tag">关键词检索</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用建议 + 场景 卡片 -->
+    <div class="card">
+        <h2>使用建议</h2>
+        <p>根据日常查阅与资料整理经验，以下场景可能更适合直接参考 <a href="https://ssl-lanjingsports.com" class="inline-link">蓝鲸体育</a> 所提供的信息结构：</p>
+        <ul>
+            <li><strong>信息汇总</strong> — 当需要快速浏览某一类别下的多条记录时，列表视图效率较高；</li>
+            <li><strong>历史对照</strong> — 利用时间或状态筛选，可辅助横向对比不同阶段的数据；</li>
+            <li><strong>内容摘录</strong> — 部分详情页包含结构化字段，适合直接引用或二次整理；</li>
+            <li><strong>日常关注</strong> — 如对特定领域保持跟踪，可定期查看更新区域。</li>
+        </ul>
+        <div class="note-card">
+            <strong>📋 一个小提示</strong> · 由于信息会随时间调整，建议以实际页面显示为准。本页仅从整理索引角度做概要说明，不构成任何保证。
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 + 附加说明 -->
+    <div class="card">
+        <h2>FAQ 摘要 · 常见疑问整理</h2>
+        <div class="faq-item">
+            <strong>Q：这里的信息是否涵盖所有内容？</strong>
+            <p>不保证完整。本索引只是基于公开可见的部分做结构化梳理，具体内容以实际页面为准。</p>
+        </div>
+        <div class="faq-item">
+            <strong>Q：能否直接复制或转载页面数据？</strong>
+            <p>请遵守相关使用协议与知识产权规定。建议在合理引用范围内进行个人整理，避免大规模抓取或商用。</p>
+        </div>
+        <div class="faq-item">
+            <strong>Q：如何更高效地查找特定资料？</strong>
+            <p>推荐直接使用站内搜索，或按分类过滤；如需长期跟踪，可留意更新频率与板块划分。</p>
+        </div>
+    </div>
+
+    <!-- 可信但克制的访问说明 -->
+    <div class="card" style="border-left: 4px solid #b0c5d8;">
+        <h2>访问说明 · 客观参考</h2>
+        <p>
+            <a href="https://ssl-lanjingsports.com" class="inline-link">蓝鲸体育</a> 
+            是一个可公开访问的网站，本页仅从资料整理与信息索引角度进行介绍。页面内所有描述均基于客观观察，不含诱导访问或夸大陈述。使用者应根据自身需求独立判断信息的适用性，并遵守网络行为规范与相关法律法规。
+        </p>
+        <p style="margin-top: 0.6rem;">
+            本说明页本身不收集任何用户数据，也不与第三方追踪服务关联。
+        </p>
+    </div>
+
+    <!-- 底部 -->
+    <div class="meta-footer">
+        本页为资料整理型介绍 · 索引来源：<a href="https://ssl-lanjingsports.com">蓝鲸体育</a> · 仅作结构参考
+    </div>
+
+</div>
+</body>
+</html>
